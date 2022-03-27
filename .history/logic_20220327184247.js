@@ -1,4 +1,4 @@
-var buttonContainerEl = document.querySelector('#city-list');
+var buttonContainerEl = document.getElementById('city-list');
 
 function getApi() {
 
@@ -10,9 +10,9 @@ fetch(requestUrl)
 })
 .then(function(data){
   // console.log(data[0].Country.EnglishName)
-  for (var i = 0; i < data.length; i++) {
-    var localButton = document.createElement('li')
-    localButton.textContent = `${data[i].EnglishName}, ${data[i].Country.EnglishName}`;
+  for (var i = 1; i < data.length; i++) {
+    var localButton = document.createElement('button')
+    localButton.textContent = (`${data[i].EnglishName}, ${data[1].Country.EnglishName}`);
     buttonContainerEl.appendChild(localButton)
   }
 });

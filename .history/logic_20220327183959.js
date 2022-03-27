@@ -1,5 +1,3 @@
-var buttonContainerEl = document.querySelector('#city-list');
-
 function getApi() {
 
 var requestUrl = "http://dataservice.accuweather.com/locations/v1/topcities/50?apikey=%09WRy7rAgeG9pkGPZlac8sWxk9sXswNaMI";
@@ -10,10 +8,9 @@ fetch(requestUrl)
 })
 .then(function(data){
   // console.log(data[0].Country.EnglishName)
-  for (var i = 0; i < data.length; i++) {
-    var localButton = document.createElement('li')
-    localButton.textContent = `${data[i].EnglishName}, ${data[i].Country.EnglishName}`;
-    buttonContainerEl.appendChild(localButton)
+  for (var i = 1; i < data.length; i++) {
+    var localButton = document.createElement('button')
+    localButton.textContent = (`${data[i].EnglishName}, ${data[1].Country.EnglishName}`)''
   }
 });
 }
