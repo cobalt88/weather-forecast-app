@@ -15,13 +15,8 @@ fetch(requestUrl)
     location.textContent = `${data[i].EnglishName}, ${data[i].Country.EnglishName}`;
     buttonContainerEl.appendChild(location)
     location.setAttribute('class', 'list-group-item ')
-    location.setAttribute('id', `${data[i].EnglishName}-${data[i].Country.EnglishName}` )
   }
 });
-}
-
-function search() {
-  
 }
 
 

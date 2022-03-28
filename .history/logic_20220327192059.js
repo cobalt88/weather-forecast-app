@@ -20,9 +20,5 @@ fetch(requestUrl)
 });
 }
 
-function search() {
-  
-}
-
 
 getApi();
