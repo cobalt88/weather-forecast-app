@@ -9,24 +9,16 @@ fetch(requestUrl)
   return response.json();
 })
 .then(function(data){
-  return data;
-  // for (var i = 0; i < data.length; i++) {
-  //   var location = document.createElement('li')
-  //   location.textContent = `${data[i].EnglishName}, ${data[i].Country.EnglishName}`;
-  //   buttonContainerEl.appendChild(location)
-  //   location.setAttribute('class', 'list-group-item ')
-  //   location.setAttribute('id', `${data[i].EnglishName}-${data[i].Country.EnglishName}` )
-  
-  // }
+  // console.log(data[0].Country.EnglishName)
+  for (var i = 0; i < data.length; i++) {
+    var location = document.createElement('li')
+    location.textContent = `${data[i].EnglishName}, ${data[i].Country.EnglishName}`;
+    buttonContainerEl.appendChild(location)
+    location.setAttribute('class', 'list-group-item ')
+    location.setAttribute('id', `${data[i].EnglishName}-${data[i].Country.EnglishName}` )
+    return data;
+  }
 });
-}
-for (var i = 0; i < data.length; i++) {
-  var location = document.createElement('li')
-  location.textContent = `${data[i].EnglishName}, ${data[i].Country.EnglishName}`;
-  buttonContainerEl.appendChild(location)
-  location.setAttribute('class', 'list-group-item ')
-  location.setAttribute('id', `${data[i].EnglishName}-${data[i].Country.EnglishName}` )
-
 }
 
 
