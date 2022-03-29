@@ -3,14 +3,13 @@ var dataArr = [];
 currentLocationArr = [];
 
 function getLocation() {
-  var requestLocationUrl = 'http://dataservice.accuweather.com/locations/v1/cities/ipaddress?apikey=WRy7rAgeG9pkGPZlac8sWxk9sXswNaMI&q=199.231.175.194'
+  var requestLocationUrl = 'http://dataservice.accuweather.com/locations/v1/cities/199.231.175.194?apikey=%09WRy7rAgeG9pkGPZlac8sWxk9sXswNaMI'
   fetch(requestLocationUrl) 
   .then(function(response){
     return response.json();
   })
   .then(function(currentLocation) {
-    currentLocationArr.push(currentLocation);
-    console.log(currentLocationArr);
+    currentLocationArr.push(...currentLocation);
   })
 };
 
@@ -55,4 +54,4 @@ fetch(requestUrl)
 
 getLocation();
 getApi();
-// console.log(currentLocationArr);
+console.log(currentLocationArr);

@@ -1,37 +1,27 @@
 var buttonContainerEl = document.querySelector('#city-list');
-var dataArr = [];
-currentLocationArr = [];
-
-function getLocation() {
-  var requestLocationUrl = 'http://dataservice.accuweather.com/locations/v1/cities/ipaddress?apikey=WRy7rAgeG9pkGPZlac8sWxk9sXswNaMI&q=199.231.175.194'
-  fetch(requestLocationUrl) 
-  .then(function(response){
-    return response.json();
-  })
-  .then(function(currentLocation) {
-    currentLocationArr.push(currentLocation);
-    console.log(currentLocationArr);
-  })
-};
-
 
 function getApi() {
+
 var requestUrl = "http://dataservice.accuweather.com/locations/v1/topcities/150?apikey=%09WRy7rAgeG9pkGPZlac8sWxk9sXswNaMI";
+var dataArr = [];
+
 fetch(requestUrl)
   .then(function(response){
   return response.json();
 })
-.then(function(cityData){
-  for (var i = 0; i < cityData.length; i++) {
+.then(function(data){
+
+  for (var i = 0; i < data.length; i++) {
     var location = document.createElement('li')
-    location.textContent = `${cityData[i].EnglishName}, ${cityData[i].Country.EnglishName}`;
+    location.textContent = `${data[i].EnglishName}, ${data[i].Country.EnglishName}`;
     buttonContainerEl.appendChild(location)
     location.setAttribute('class', 'list-group-item ')
-    location.setAttribute('id', `${cityData[i].EnglishName}-${cityData[i].Country.EnglishName}` )
-    dataArr.push(cityData[i]);
+    location.setAttribute('id', `${data[i].EnglishName}-${data[i].Country.EnglishName}` )
+    dataArr.push(data[i]);
+  
   }
 });
-};
+}
 
 
 
@@ -53,6 +43,6 @@ fetch(requestUrl)
   
 // }
 
-getLocation();
+
 getApi();
-// console.log(currentLocationArr);
+console.log(dataArr);

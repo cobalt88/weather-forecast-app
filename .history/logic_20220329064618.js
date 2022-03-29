@@ -9,7 +9,7 @@ function getLocation() {
     return response.json();
   })
   .then(function(currentLocation) {
-    currentLocationArr.push(currentLocation);
+    currentLocationArr.push(...currentLocation);
     console.log(currentLocationArr);
   })
 };
