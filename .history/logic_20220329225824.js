@@ -5,9 +5,9 @@ var input = document.getElementById('searchInput');
 var searchBtn = document.getElementById('search-button');
 
 function search() {
-  // if (input = null) {
-  //   window.alert('Please input a city name')
-  // }
+  if (input = null) {
+    window.alert('Please input a city name')
+  }
   var searchUrl = `http://dataservice.accuweather.com/locations/v1/cities/search?apikey=%09WRy7rAgeG9pkGPZlac8sWxk9sXswNaMI&q=${input}`
   fetch(searchUrl)
     .then(function(response) {
