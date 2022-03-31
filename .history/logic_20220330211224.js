@@ -1,29 +1,19 @@
 var buttonContainerEl = document.querySelector('#city-list');
 var dataArr = [];
 var currentLocationArr = [];
-var searchLocationArr = [];
 var input = document.getElementById('searchInput');
+var searchBtn = document.getElementById('search-button');
 
-$("#search-button").on("click", function () {
-  let text = $(this).siblings("#searchInput").val();
-
-
-  console.log(text)
-  var searchUrl = `http://dataservice.accuweather.com/locations/v1/cities/search?apikey=%09WRy7rAgeG9pkGPZlac8sWxk9sXswNaMI&q=${text}}`
+function search() {
+  // if (input = null) {
+  //   window.alert('Please input a city name')
+  // }
+  var searchUrl = `http://dataservice.accuweather.com/locations/v1/cities/search?apikey=%09WRy7rAgeG9pkGPZlac8sWxk9sXswNaMI&q=${input}`
   fetch(searchUrl)
     .then(function(response) {
-      return response.json();
+      console.log(response);
     })
-    .then(function(searchLocation) {
-      console.log(searchLocation);
-      searchLocationArr.push(searchLocation)
-    })
-    .then(function(){
-      console.log(searchLocationArr);
-    })
-
-  })
-
+}
 
 function getLocation() {
   var requestLocationUrl = 'http://dataservice.accuweather.com/locations/v1/cities/ipaddress?apikey=WRy7rAgeG9pkGPZlac8sWxk9sXswNaMI&q=199.231.175.194'
@@ -33,6 +23,7 @@ function getLocation() {
   })
   .then(function(currentLocation) {
     currentLocationArr.push(currentLocation);
+    console.log(currentLocationArr);
   })
 };
 
@@ -74,6 +65,7 @@ fetch(requestUrl)
   
 // }
 
+searchBtn.addEventListener('click', search);
 getLocation();
 getApi();
-// console.log(searchLocationArr);
+// console.log(currentLocationArr);

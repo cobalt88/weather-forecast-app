@@ -15,7 +15,6 @@ $("#search-button").on("click", function () {
       return response.json();
     })
     .then(function(searchLocation) {
-      console.log(searchLocation);
       searchLocationArr.push(searchLocation)
     })
     .then(function(){
