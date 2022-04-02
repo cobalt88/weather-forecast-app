@@ -32,12 +32,10 @@ function getLocation() {
     return response.json();
   })
   .then(function(currentLocation) {
-
     currentLocationArr.push(currentLocation);
-    console.log(currentLocationArr[0].EnglishName);
   })
 
-
+console.log(currentLocationArr[0].Key());
   var searchUrl = `http://dataservice.accuweather.com/locations/v1/cities/search?apikey=%09WRy7rAgeG9pkGPZlac8sWxk9sXswNaMI&q=${location}}`
   fetch(searchUrl)
     .then(function(response) {
