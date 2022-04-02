@@ -51,7 +51,7 @@ function getLocation() {
 };
 
 
-function getCityList() {
+function getApi() {
 var requestUrl = "http://dataservice.accuweather.com/locations/v1/topcities/150?apikey=%09WRy7rAgeG9pkGPZlac8sWxk9sXswNaMI";
 fetch(requestUrl)
   .then(function(response){
@@ -68,10 +68,6 @@ fetch(requestUrl)
   }
 });
 };
-
-function forecastDisplayHandler () {
-
-}
 
 
 

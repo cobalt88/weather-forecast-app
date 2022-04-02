@@ -93,5 +93,7 @@ function forecastDisplayHandler () {
 // }
 
 getLocation();
+
 getApi();
 console.log(currentLocationArr);
+

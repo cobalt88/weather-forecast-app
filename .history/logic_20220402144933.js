@@ -32,12 +32,10 @@ function getLocation() {
     return response.json();
   })
   .then(function(currentLocation) {
-
     currentLocationArr.push(currentLocation);
-    console.log(currentLocationArr[0].EnglishName);
   })
 
-
+console.log(currentLocationArr[0].Key());
   var searchUrl = `http://dataservice.accuweather.com/locations/v1/cities/search?apikey=%09WRy7rAgeG9pkGPZlac8sWxk9sXswNaMI&q=${location}}`
   fetch(searchUrl)
     .then(function(response) {
@@ -51,7 +49,7 @@ function getLocation() {
 };
 
 
-function getCityList() {
+function getApi() {
 var requestUrl = "http://dataservice.accuweather.com/locations/v1/topcities/150?apikey=%09WRy7rAgeG9pkGPZlac8sWxk9sXswNaMI";
 fetch(requestUrl)
   .then(function(response){
@@ -68,10 +66,6 @@ fetch(requestUrl)
   }
 });
 };
-
-function forecastDisplayHandler () {
-
-}
 
 
 
