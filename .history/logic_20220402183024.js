@@ -1,10 +1,11 @@
 var buttonContainerEl = document.querySelector('#city-list');
 var forecastContainer = document.getElementById('5-day-container');
 var todayContainer = document.getElementById('current-day')
+var dataArr = [];
 var displayArr = [];
 var currentLocationArr = [];
+var searchLocationArr = [];
 var forecastArr = [];
-// var searchLocationArr = [];
 var input = document.getElementById('searchInput');
 var locationKey = '';
 
@@ -32,9 +33,9 @@ function getLocation() {
     return response.json();
   })
   .then(function(currentLocation) {
-    let tempArr = [];
-    tempArr.push(currentLocation);
-    locationKey = tempArr[0].Key;
+    currentLocationArr.push(currentLocation);
+    displayArr = currentLocationArr;
+    getForecast();
   })
 };
 
@@ -52,35 +53,30 @@ function getLocation() {
 //     buttonContainerEl.appendChild(location)
 //     location.setAttribute('class', 'list-group-item ')
 //     location.setAttribute('id', `${cityData[i].EnglishName}-${cityData[i].Country.EnglishName}` )
-
+//     dataArr.push(cityData[i]);
 //   }
 // });
 // };
 
 function getForecast() {
 
-    
-    var searchUrl = `http://dataservice.accuweather.com/locations/v1/cities/search?apikey=%09WRy7rAgeG9pkGPZlac8sWxk9sXswNaMI&q=${locationKey}}`
+    var localKey = displayArr[0].Key;
+    var searchUrl = `http://dataservice.accuweather.com/locations/v1/cities/search?apikey=%09WRy7rAgeG9pkGPZlac8sWxk9sXswNaMI&q=${localKey}}`
     fetch(searchUrl)
       .then(function(response) {
         return response.json();
       })
-      .then(function(forecast) {
-        let tempArr = []
-       tempArr.push(forecast);
-       forecastArr = tempArr;
-       forecastDisplayHandler();
+      .then(function(location) {
+       locationKey = localKey;
       })
-      
+      .then(forecastDisplayHandler());
   }
 
 
 
 function forecastDisplayHandler () {
 
-  console.log(forecastArr);
-
-  var currentCity = displayArr[0].EnglishName;
+  var currentCity = displayArr[0];
 
 todayContainer.innerHTML += 
   ` <h2 id="city">${currentCity}</h2>
@@ -93,20 +89,20 @@ todayContainer.innerHTML +=
 
 
 
-// for (var i = 0; i < displayArr.length; i++) {
+for (var i = 0; i < forecastArr.length; i++) {
 
-//   var date = displayArr[i].Date;
+  var date = displayArr[i].Date;
   
-//   forecastContainer.innerHTML +=
-//       `<div id="day ${i}" class="card col-3">
-//       <h2 id="date">${date}</h2>
-//       <img alt="Weather Icon">
-//       <p id="temp">${temp}</p>
-//       <p id="wind">${wind}</p>
-//       <p id="humidity">${humidity}</p>
-//     </div>`
+  forecastContainer.innerHTML +=
+      `<div id="day ${i}" class="card col-2">
+      <h2 id="date">${date}</h2>
+      <img alt="Weather Icon">
+      <p id="temp">${temp}</p>
+      <p id="wind">${wind}</p>
+      <p id="humidity">${humidity}</p>
+    </div>`
     
-// }
+}
 
 }
 

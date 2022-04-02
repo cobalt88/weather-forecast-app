@@ -69,9 +69,8 @@ function getForecast() {
         let tempArr = []
        tempArr.push(forecast);
        forecastArr = tempArr;
-       forecastDisplayHandler();
       })
-      
+      .then(forecastDisplayHandler());
   }
 
 

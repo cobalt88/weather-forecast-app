@@ -34,7 +34,7 @@ function getLocation() {
   .then(function(currentLocation) {
     let tempArr = [];
     tempArr.push(currentLocation);
-    locationKey = tempArr[0].Key;
+    console.log(tempArr)
   })
 };
 
@@ -59,8 +59,8 @@ function getLocation() {
 
 function getForecast() {
 
-    
-    var searchUrl = `http://dataservice.accuweather.com/locations/v1/cities/search?apikey=%09WRy7rAgeG9pkGPZlac8sWxk9sXswNaMI&q=${locationKey}}`
+    var localKey = displayArr[0].Key;
+    var searchUrl = `http://dataservice.accuweather.com/locations/v1/cities/search?apikey=%09WRy7rAgeG9pkGPZlac8sWxk9sXswNaMI&q=${localKey}}`
     fetch(searchUrl)
       .then(function(response) {
         return response.json();
@@ -69,9 +69,8 @@ function getForecast() {
         let tempArr = []
        tempArr.push(forecast);
        forecastArr = tempArr;
-       forecastDisplayHandler();
       })
-      
+      .then(forecastDisplayHandler());
   }
 
 

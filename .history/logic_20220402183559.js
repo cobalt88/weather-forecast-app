@@ -1,10 +1,11 @@
 var buttonContainerEl = document.querySelector('#city-list');
 var forecastContainer = document.getElementById('5-day-container');
 var todayContainer = document.getElementById('current-day')
+var dataArr = [];
 var displayArr = [];
 var currentLocationArr = [];
+var searchLocationArr = [];
 var forecastArr = [];
-// var searchLocationArr = [];
 var input = document.getElementById('searchInput');
 var locationKey = '';
 
@@ -32,9 +33,9 @@ function getLocation() {
     return response.json();
   })
   .then(function(currentLocation) {
-    let tempArr = [];
-    tempArr.push(currentLocation);
-    locationKey = tempArr[0].Key;
+    currentLocationArr.push(currentLocation);
+    displayArr = currentLocationArr;
+    getForecast();
   })
 };
 
@@ -52,15 +53,15 @@ function getLocation() {
 //     buttonContainerEl.appendChild(location)
 //     location.setAttribute('class', 'list-group-item ')
 //     location.setAttribute('id', `${cityData[i].EnglishName}-${cityData[i].Country.EnglishName}` )
-
+//     dataArr.push(cityData[i]);
 //   }
 // });
 // };
 
 function getForecast() {
 
-    
-    var searchUrl = `http://dataservice.accuweather.com/locations/v1/cities/search?apikey=%09WRy7rAgeG9pkGPZlac8sWxk9sXswNaMI&q=${locationKey}}`
+    var localKey = displayArr[0].Key;
+    var searchUrl = `http://dataservice.accuweather.com/locations/v1/cities/search?apikey=%09WRy7rAgeG9pkGPZlac8sWxk9sXswNaMI&q=${localKey}}`
     fetch(searchUrl)
       .then(function(response) {
         return response.json();
@@ -69,9 +70,8 @@ function getForecast() {
         let tempArr = []
        tempArr.push(forecast);
        forecastArr = tempArr;
-       forecastDisplayHandler();
       })
-      
+      .then(forecastDisplayHandler());
   }
 
 
