@@ -34,7 +34,6 @@ function getLocation() {
     let tempArr = [];
     tempArr.push(currentLocation);
     locationKey = tempArr[0].Key;
-    getForecast();
   })
 };
 
@@ -60,7 +59,7 @@ function getLocation() {
 function getForecast() {
 
     
-    var searchUrl = `http://dataservice.accuweather.com/forecasts/v1/daily/5day/${locationKey}?apikey=WRy7rAgeG9pkGPZlac8sWxk9sXswNaMI`
+    var searchUrl = `http://dataservice.accuweather.com/locations/v1/cities/search?apikey=%09WRy7rAgeG9pkGPZlac8sWxk9sXswNaMI&q=${locationKey}}`
     fetch(searchUrl)
       .then(function(response) {
         return response.json();
@@ -70,7 +69,7 @@ function getForecast() {
        tempArr.push(forecast);
        forecastArr = tempArr;
        console.log(forecastArr)
-      //  forecastDisplayHandler();
+       forecastDisplayHandler();
       })
       
   }

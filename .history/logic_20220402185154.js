@@ -66,10 +66,10 @@ function getForecast() {
         return response.json();
       })
       .then(function(forecast) {
-        let tempArr = [];
-       tempArr.push(forecast);
-       forecastArr = tempArr;
-       console.log(forecastArr)
+      //   let tempArr = [];
+      //  tempArr.push(forecast);
+      //  forecastArr = tempArr;
+       console.log(forecast)
       //  forecastDisplayHandler();
       })
       

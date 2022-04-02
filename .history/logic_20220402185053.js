@@ -60,16 +60,16 @@ function getLocation() {
 function getForecast() {
 
     
-    var searchUrl = `http://dataservice.accuweather.com/forecasts/v1/daily/5day/${locationKey}?apikey=WRy7rAgeG9pkGPZlac8sWxk9sXswNaMI`
+    var searchUrl = `http://dataservice.accuweather.com/locations/v1/cities/search?apikey=%09WRy7rAgeG9pkGPZlac8sWxk9sXswNaMI&q=${locationKey}}`
     fetch(searchUrl)
       .then(function(response) {
         return response.json();
       })
       .then(function(forecast) {
-        let tempArr = [];
-       tempArr.push(forecast);
-       forecastArr = tempArr;
-       console.log(forecastArr)
+      //   let tempArr = [];
+      //  tempArr.push(forecast);
+      //  forecastArr = tempArr;
+       console.log(forecast)
       //  forecastDisplayHandler();
       })
       
