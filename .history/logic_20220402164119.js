@@ -1,14 +1,13 @@
 var buttonContainerEl = document.querySelector('#city-list');
-var forecastContainer = document.getElementById('5-day-container');
-var todayContainer = document.getElementById('current-day')
 var dataArr = [];
 var currentLocationArr = [];
 var searchLocationArr = [];
-var forecastArr = [];
 var input = document.getElementById('searchInput');
 
 $("#search-button").on("click", function () {
   let text = $(this).siblings("#searchInput").val();
+
+
   console.log(text)
   var searchUrl = `http://dataservice.accuweather.com/locations/v1/cities/search?apikey=%09WRy7rAgeG9pkGPZlac8sWxk9sXswNaMI&q=${text}}`
   fetch(searchUrl)
@@ -16,7 +15,8 @@ $("#search-button").on("click", function () {
       return response.json();
     })
     .then(function(searchLocation) {
-      currentLocationArr.push(searchLocation);
+      console.log(searchLocation);
+      searchLocationArr.push(searchLocation)
     })
     .then(function(){
       console.log(searchLocationArr);
@@ -42,7 +42,7 @@ function getLocation() {
         return response.json();
       })
       .then(function(location) {
-        // console.log(location);
+        console.log(location);
         // searchLocationArr.push(searchLocation)
       })
   })
@@ -72,28 +72,6 @@ fetch(requestUrl)
 };
 
 function forecastDisplayHandler () {
-for (var i = 0; i < forecastArr.length; i++) {
-
-  <div id="current-day">
-  <h2 id="city">Current City</h2>
-  <h2 id="date">Date</h2>
-      <img alt="Weather Icon">
-      <p id="temp">Current temp</p>
-      <p id="wind">Wind Speed</p>
-      <p id="humidity">Current Humidity</p>
-</div>
-  )  
-  
-  forecastContainer.appendChild(
-      `<div id="day ${i}" class="card col-2">
-      <h2 id="date">${date}</h2>
-      <img alt="Weather Icon">
-      <p id="temp">${temp}</p>
-      <p id="wind">${wind}</p>
-      <p id="humidity">${humidity}</p>
-    </div>`
-    )
-}
 
 }
 
@@ -118,4 +96,4 @@ for (var i = 0; i < forecastArr.length; i++) {
 
 getLocation();
 getCityList();
-// console.log(currentLocationArr);
+console.log(currentLocationArr);
