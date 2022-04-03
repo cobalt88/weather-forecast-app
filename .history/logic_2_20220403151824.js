@@ -135,13 +135,12 @@ for (var i = 1; i < 6; i++) {
 $("#search-button").on("click", function () {
   searchInput = $(this).siblings("#searchInput").val();
   geoLocate();
-  let history = JSON.parse(localStorage.getItem('searchHistory'))
+
   let tempArr = [];
   tempArr.push(searchInput);
   tempArr.push(searchHistoryArr);
-  tempArr.push(history);
   JSON.stringify(tempArr);
-  localStorage.setItem('searchHistory', tempArr);
+  // localStorage.setItem('searchHistory', searchHistoryArr);
   // let newData = JSON.parse(localStorage.getItem('searchHistory'));
   // tempArr.push(newData);
   // searchHistoryArr = tempArr;

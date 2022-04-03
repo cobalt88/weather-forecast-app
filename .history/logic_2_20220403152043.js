@@ -139,7 +139,6 @@ $("#search-button").on("click", function () {
   let tempArr = [];
   tempArr.push(searchInput);
   tempArr.push(searchHistoryArr);
-  tempArr.push(history);
   JSON.stringify(tempArr);
   localStorage.setItem('searchHistory', tempArr);
   // let newData = JSON.parse(localStorage.getItem('searchHistory'));

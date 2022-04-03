@@ -9,7 +9,7 @@ var lon = '';
 var forecastContainer = document.getElementById('5-day-container');
 var currentDay = document.getElementById('current-day')
 var searchHistoryArr = [];
-// $(document).ready(geoLocate());
+$(document).ready(geoLocate());
 
 function geoLocate() {
   var requestLocationUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${searchInput}&limit=1&appid=${apiKey}`
@@ -134,18 +134,10 @@ for (var i = 1; i < 6; i++) {
 
 $("#search-button").on("click", function () {
   searchInput = $(this).siblings("#searchInput").val();
+  searchHistoryArr.push(searchInput);
+  JSON.stringify(searchHistoryArr);
+  localStorage.setItem('searchHistory', searchHistoryArr);
   geoLocate();
-  let history = JSON.parse(localStorage.getItem('searchHistory'))
-  let tempArr = [];
-  tempArr.push(searchInput);
-  tempArr.push(searchHistoryArr);
-  tempArr.push(history);
-  JSON.stringify(tempArr);
-  localStorage.setItem('searchHistory', tempArr);
-  // let newData = JSON.parse(localStorage.getItem('searchHistory'));
-  // tempArr.push(newData);
-  // searchHistoryArr = tempArr;
-  console.log(tempArr);
 });
 
 
