@@ -62,11 +62,7 @@ for (var i = 0; i < 5; i++) {
 var unixTime = oneCallDataArr[0].daily[i].dt;
 var dateString = moment.unix(unixTime).format("MM/DD/YYYY");
 console.log(dateString)
-var tempKd = oneCallDataArr[0].daily[1].temp.day;
-var tempKe = oneCallDataArr[0].daily[1].temp.eve;
-var tempKmax = oneCallDataArr[0].daily[1].temp.max;
-var tempKmin = oneCallDataArr[0].daily[1].temp.min;
-//tempFd = (tempKd - 273.15) * 1.8 + 32;
+var temp = 
 
   forecastContainer.innerHTML +=
       `<div id="day ${i}" class="card col-3">

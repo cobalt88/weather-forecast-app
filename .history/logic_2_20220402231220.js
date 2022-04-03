@@ -57,26 +57,22 @@ $("#current-day").innerHTML +=
       <p id="wind">Wind Speed</p>
       <p id="humidity">Current Humidity</p>`
 
-for (var i = 0; i < 5; i++) {
+// for (var i = 0; i < 5; i++) {
 
-var unixTime = oneCallDataArr[0].daily[i].dt;
-var dateString = moment.unix(unixTime).format("MM/DD/YYYY");
-console.log(dateString)
-var tempKd = oneCallDataArr[0].daily[1].temp.day;
-var tempKe = oneCallDataArr[0].daily[1].temp.eve;
-var tempKmax = oneCallDataArr[0].daily[1].temp.max;
-var tempKmin = oneCallDataArr[0].daily[1].temp.min;
-//tempFd = (tempKd - 273.15) * 1.8 + 32;
+// var unixTime = oneCallDataArr[0].daily[i].dt;
+// var dateString = moment.unix(unixTime).format("MM/DD/YYYY");
+// console.log(dateString)
+// var temp = 
 
-  forecastContainer.innerHTML +=
-      `<div id="day ${i}" class="card col-3">
-      <h2 id="date">${dateString}</h2>
-      <img alt="Weather Icon">
-      <p id="temp">${temp}</p>
-      <p id="wind">${wind}</p>
-      <p id="humidity">${humidity}</p>
-    </div>`
-};
+//   forecastContainer.innerHTML +=
+//       `<div id="day ${i}" class="card col-3">
+//       <h2 id="date">${dateString}</h2>
+//       <img alt="Weather Icon">
+//       <p id="temp">${temp}</p>
+//       <p id="wind">${wind}</p>
+//       <p id="humidity">${humidity}</p>
+//     </div>`
+// };
 }
 $("#search-button").on("click", function () {
   searchInput = $(this).siblings("#searchInput").val();
