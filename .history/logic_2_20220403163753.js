@@ -70,16 +70,14 @@ function forecastDisplayHandler() {
   let windSpeed = oneCallDataArr[0].daily[0].wind_speed;
   let windGust = oneCallDataArr[0].daily[0].wind_gust;
   let windDir = oneCallDataArr[0].daily[0].wind_deg;
+
   let humidity = oneCallDataArr[0].daily[0].humidity;
   let uvIndex = oneCallDataArr[0].daily[0].uvi;
-  let icon = oneCallDataArr[0].daily[0].weather[0].icon;
-
-  let iconSrc = `http://openweathermap.org/img/wn/${icon}@2x.png`
   
    currentDay.innerHTML = 
   ` <h2 id="city">${currentCity}</h2>
     <h4 id="date">${now}</h4>
-    <img src="${iconSrc}" alt="Weather Icon">
+    <img alt="Weather Icon">
     <p id="weather-${i}></p>
     <p id="temp-${i}">Day Temp: ${tempFd}</p>
     <p id="temp-${i}">Evening Temp: ${tempFe}</p>
