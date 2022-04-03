@@ -137,45 +137,50 @@ for (var i = 1; i < 6; i++) {
 }
 
 function loadStorage() {
-  // let x = JSON.parse(localStorage.getItem("searchHistory"));
-  // searchHistoryArr.push(x);
+  let x = JSON.parse(localStorage.getItem("searchHistory"));
+  searchHistoryArr.push(x);
   console.log(searchHistoryArr);
   
 }
 
-// function storage() {
-// let searchHistory = JSON.stringify(searchHistoryArr);
-// localStorage.setItem('searchHistory', searchHistory);
-// let searchData = localStorage.getItem('searchHistory');
-
-//   console.log(searchHistoryArr);
-// }
+function storage() {
+  var x = JSON.stringify(searchHistoryArr);
+  localStorage.setItem('searchHistory', x);
+  console.log(x);
+}
 
 function displayHistory() {
-for(var i = 0; i < searchHistoryArr.length; i++) {
 
-  if (i < 5) {
-    var text = searchHistoryArr[i];
-  
-    historyContainer.innerHTML += 
-      `<li>${text}</li>`
-    }
+  var length = 
+  function lengthValue() {
+    if (searchHistoryArr.length < 5) {
+      length = searchHistoryArr.length;
+    } else {
+      length = 5;
+    } return length;
   }
+
+  for(var i = 0; i < length; i++) {
+
+  var text = searchHistoryArr[0][i];
+  historyContainer.innerHTML += 
+  `
+      <li>${text}</li>
+  `
+}
 }
 
 $("#search-button").on("click", function () {
   searchInput = $(this).siblings("#searchInput").val();
-  searchHistoryArr.push(searchInput);
   geoLocate();
-  // storage();
+  searchHistoryArr.push(searchInput);
+  storage();
 });
 
-
-
-// $(document).ready(function(){
-//   loadStorage()
-//   displayHistory()
-// } );
+$(document).ready(function(){
+  loadStorage()
+  displayHistory()
+} );
 
 
 

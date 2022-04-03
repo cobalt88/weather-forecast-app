@@ -143,13 +143,16 @@ function loadStorage() {
   
 }
 
-// function storage() {
-// let searchHistory = JSON.stringify(searchHistoryArr);
-// localStorage.setItem('searchHistory', searchHistory);
-// let searchData = localStorage.getItem('searchHistory');
+function storage() {
 
-//   console.log(searchHistoryArr);
-// }
+  let tempArr = [];
+  tempArr.push(searchInput);
+  searchHistoryArr.push(tempArr);
+  console.log(searchHistoryArr);
+  // var x = JSON.stringify(searchInput);
+  // localStorage.setItem('searchHistory', x);
+  // console.log(x);
+}
 
 function displayHistory() {
 for(var i = 0; i < searchHistoryArr.length; i++) {
@@ -165,17 +168,16 @@ for(var i = 0; i < searchHistoryArr.length; i++) {
 
 $("#search-button").on("click", function () {
   searchInput = $(this).siblings("#searchInput").val();
-  searchHistoryArr.push(searchInput);
   geoLocate();
-  // storage();
+  storage();
 });
 
 
 
-// $(document).ready(function(){
-//   loadStorage()
-//   displayHistory()
-// } );
+$(document).ready(function(){
+  loadStorage()
+  displayHistory()
+} );
 
 
 

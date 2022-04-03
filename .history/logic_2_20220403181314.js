@@ -143,39 +143,42 @@ function loadStorage() {
   
 }
 
-// function storage() {
-// let searchHistory = JSON.stringify(searchHistoryArr);
-// localStorage.setItem('searchHistory', searchHistory);
-// let searchData = localStorage.getItem('searchHistory');
+function storage() {
 
-//   console.log(searchHistoryArr);
-// }
+  let tempArr = [];
+  tempArr.push(searchInput);
+
+  console.log(tempArr);
+  // var x = JSON.stringify(searchInput);
+  // localStorage.setItem('searchHistory', x);
+  // console.log(x);
+}
 
 function displayHistory() {
-for(var i = 0; i < searchHistoryArr.length; i++) {
+  for(var i = 0; i < searchHistoryArr[0].length; i++) {
 
-  if (i < 5) {
-    var text = searchHistoryArr[i];
-  
-    historyContainer.innerHTML += 
-      `<li>${text}</li>`
-    }
-  }
+if (i < 5) {
+   var text = searchHistoryArr[0][i];
+  historyContainer.innerHTML += 
+  `
+      <li>${text}</li>
+  `
+}
+}
 }
 
 $("#search-button").on("click", function () {
   searchInput = $(this).siblings("#searchInput").val();
-  searchHistoryArr.push(searchInput);
   geoLocate();
-  // storage();
+  storage();
 });
 
 
 
-// $(document).ready(function(){
-//   loadStorage()
-//   displayHistory()
-// } );
+$(document).ready(function(){
+  loadStorage()
+  displayHistory()
+} );
 
 
 

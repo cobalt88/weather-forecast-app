@@ -143,13 +143,11 @@ function loadStorage() {
   
 }
 
-// function storage() {
-// let searchHistory = JSON.stringify(searchHistoryArr);
-// localStorage.setItem('searchHistory', searchHistory);
-// let searchData = localStorage.getItem('searchHistory');
+function storage() {
+localStorage.setItem('searchHistory', searchHistoryArr);
 
-//   console.log(searchHistoryArr);
-// }
+  console.log(searchHistoryArr);
+}
 
 function displayHistory() {
 for(var i = 0; i < searchHistoryArr.length; i++) {
@@ -167,15 +165,15 @@ $("#search-button").on("click", function () {
   searchInput = $(this).siblings("#searchInput").val();
   searchHistoryArr.push(searchInput);
   geoLocate();
-  // storage();
+  storage();
 });
 
 
 
-// $(document).ready(function(){
-//   loadStorage()
-//   displayHistory()
-// } );
+$(document).ready(function(){
+  loadStorage()
+  displayHistory()
+} );
 
 
 

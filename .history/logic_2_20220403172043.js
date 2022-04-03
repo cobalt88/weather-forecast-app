@@ -9,7 +9,6 @@ var lon = '';
 var forecastContainer = document.getElementById('5-day-container');
 var currentDay = document.getElementById('current-day')
 var searchHistoryArr = [];
-var historyContainer = document.getElementById("history");
 
 
 function geoLocate() {
@@ -137,45 +136,43 @@ for (var i = 1; i < 6; i++) {
 }
 
 function loadStorage() {
-  // let x = JSON.parse(localStorage.getItem("searchHistory"));
-  // searchHistoryArr.push(x);
-  console.log(searchHistoryArr);
+  let x = JSON.parse(localStorage.getItem("searchHistory"));
+  searchHistoryArr.push(x);
   
 }
 
-// function storage() {
-// let searchHistory = JSON.stringify(searchHistoryArr);
-// localStorage.setItem('searchHistory', searchHistory);
-// let searchData = localStorage.getItem('searchHistory');
-
-//   console.log(searchHistoryArr);
-// }
-
-function displayHistory() {
-for(var i = 0; i < searchHistoryArr.length; i++) {
-
-  if (i < 5) {
-    var text = searchHistoryArr[i];
+function storage() {
+ ;
   
-    historyContainer.innerHTML += 
-      `<li>${text}</li>`
-    }
-  }
+  // var y = 'searchHistory';
+  var x = JSON.stringify(searchHistoryArr);
+  localStorage.setItem('searchHistory', x);
+  // let tempArr = [];
+  // let history = JSON.parse(localStorage.getItem('searchHistory'))
+
+  // tempArr.push(history);
+  
+  // tempArr.push(searchInput);
+  // tempArr.push(searchHistoryArr);
+  // tempArr.push(history);
+  
+  // localStorage.setItem('searchHistory', tempArr.toString);
+  // let newData = JSON.parse(localStorage.getItem('searchHistory'));
+  // tempArr.push(newData);
+  // searchHistoryArr = tempArr;
+  console.log(x);
 }
+
+
 
 $("#search-button").on("click", function () {
   searchInput = $(this).siblings("#searchInput").val();
-  searchHistoryArr.push(searchInput);
   geoLocate();
-  // storage();
+  searchHistoryArr.push(searchInput);
+  storage();
 });
 
-
-
-// $(document).ready(function(){
-//   loadStorage()
-//   displayHistory()
-// } );
+$(document).ready(loadStorage());
 
 
 
