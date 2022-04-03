@@ -33,9 +33,7 @@ function getLocation() {
   })
   .then(function(currentLocation) {
     currentLocationArr.push(currentLocation);
-  }) 
-  .then(function(forecast){});
-
+  }) .then(function(forecast))
 
 
   var searchUrl = `http://dataservice.accuweather.com/locations/v1/cities/search?apikey=%09WRy7rAgeG9pkGPZlac8sWxk9sXswNaMI&q=${location}}`
