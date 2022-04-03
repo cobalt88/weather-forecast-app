@@ -33,54 +33,18 @@ function oneCall() {
   let oneCallApi = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely&appid=${apiKey}`
   fetch(oneCallApi)
   .then(function(response){
-    return response.json();
+    return response.json;
   })
   .then(function(allData) {
     let tempArr = [];
     tempArr.push(allData)
     oneCallDataArr = tempArr;
-    forecastDisplayHandler();
+    console.log(oneCallDataArr)
   })
-  // .then(function(){
-  //   console.log(oneCallDataArr)
-  // })
-};
-
-function forecastDisplayHandler() {
-
-  var now = moment().format('dddd MMMM do YYYY, h:mm a');
-  var currentCity = geoArr[0][0].name;
-$("#current-day").innerHTML += 
-  ` <h2 id="city">${currentCity}</h2>
-    <h4 id="date">${now}</h4>
-      <p>Day:<img alt="Weather Icon"></p>
-      <p>Night:<img alt="Weather Icon 2"></p>
-      <p id="temp">Current temp</p>
-      <p id="wind">Wind Speed</p>
-      <p id="humidity">Current Humidity</p>`
-
-for (var i = 0; i < 5; i++) {
-
-var unixTime = oneCallDataArr[0].daily[i].dt;
-var dateString = moment.unix(unixTime).format("MM/DD/YYYY");
-console.log(dateString)
-  // return time;
-}
-
-}
-  
-  // forecastContainer.innerHTML +=
-  //     `<div id="day ${i}" class="card col-3">
-  //     <h2 id="date">${time}</h2>
-  //     <img alt="Weather Icon">
-  //     <p id="temp">${temp}</p>
-  //     <p id="wind">${wind}</p>
-  //     <p id="humidity">${humidity}</p>
-  //   </div>`
+  .then(function(){
     
-
-
-
+  })
+};
 
 
 $("#search-button").on("click", function () {

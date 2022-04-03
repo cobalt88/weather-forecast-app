@@ -50,7 +50,7 @@ function forecastDisplayHandler() {
 
   var now = moment().format('dddd MMMM do YYYY, h:mm a');
   var currentCity = geoArr[0][0].name;
-$("#current-day").innerHTML += 
+$('#current-day').innerHTML += 
   ` <h2 id="city">${currentCity}</h2>
     <h4 id="date">${now}</h4>
       <p>Day:<img alt="Weather Icon"></p>
@@ -64,7 +64,7 @@ for (var i = 0; i < 5; i++) {
 var unixTime = oneCallDataArr[0].daily[i].dt;
 var dateString = moment.unix(unixTime).format("MM/DD/YYYY");
 console.log(dateString)
-  // return time;
+  return time;
 }
 
 }

@@ -39,48 +39,46 @@ function oneCall() {
     let tempArr = [];
     tempArr.push(allData)
     oneCallDataArr = tempArr;
-    forecastDisplayHandler();
   })
-  // .then(function(){
-  //   console.log(oneCallDataArr)
-  // })
+  .then(function(){
+    console.log(geoArr)
+  })
 };
 
-function forecastDisplayHandler() {
+// function forecastDisplayHandler() {
 
-  var now = moment().format('dddd MMMM do YYYY, h:mm a');
-  var currentCity = geoArr[0][0].name;
-$("#current-day").innerHTML += 
-  ` <h2 id="city">${currentCity}</h2>
-    <h4 id="date">${now}</h4>
-      <p>Day:<img alt="Weather Icon"></p>
-      <p>Night:<img alt="Weather Icon 2"></p>
-      <p id="temp">Current temp</p>
-      <p id="wind">Wind Speed</p>
-      <p id="humidity">Current Humidity</p>`
+//   console.log(forecastArr);
+//   // console.log(displayArr)
+//   var now = moment().format('dddd MMMM do YYYY, h:mm a');
+//   var currentCity = displayArr[0].EnglishName;
+//   let weather = forecastArr[0].DailyForecasts[0].Day;
+//   console.log(weather)
 
-for (var i = 0; i < 5; i++) {
+// todayContainer.innerHTML += 
+//   ` <h2 id="city">${currentCity}</h2>
+//     <h4 id="date">${now}</h4>
+//       <p>Day:<img alt="Weather Icon"></p>
+//       <p>Night:<img alt="Weather Icon 2"></p>
+//       <p id="temp">Current temp</p>
+//       <p id="wind">Wind Speed</p>
+//       <p id="humidity">Current Humidity</p>`
 
-var unixTime = oneCallDataArr[0].daily[i].dt;
-var dateString = moment.unix(unixTime).format("MM/DD/YYYY");
-console.log(dateString)
-  // return time;
-}
+// for (var i = 0; i < displayArr.length; i++) {
 
-}
+//   var date = displayArr[i].Date;
   
-  // forecastContainer.innerHTML +=
-  //     `<div id="day ${i}" class="card col-3">
-  //     <h2 id="date">${time}</h2>
-  //     <img alt="Weather Icon">
-  //     <p id="temp">${temp}</p>
-  //     <p id="wind">${wind}</p>
-  //     <p id="humidity">${humidity}</p>
-  //   </div>`
+//   forecastContainer.innerHTML +=
+//       `<div id="day ${i}" class="card col-3">
+//       <h2 id="date">${date}</h2>
+//       <img alt="Weather Icon">
+//       <p id="temp">${temp}</p>
+//       <p id="wind">${wind}</p>
+//       <p id="humidity">${humidity}</p>
+//     </div>`
     
+// }
 
-
-
+// }
 
 
 $("#search-button").on("click", function () {
