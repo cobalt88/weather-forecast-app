@@ -34,7 +34,6 @@ function getLocation() {
     let tempArr = [];
     tempArr.push(currentLocation);
     locationKey = tempArr[0].Key;
-    displayArr = tempArr;
     getForecast();
   })
 };
@@ -80,17 +79,14 @@ function getForecast() {
 function forecastDisplayHandler() {
 
   console.log(forecastArr);
-  // console.log(displayArr)
-  var now = moment().format('dddd MMMM do YYYY, h:mm a');
-  var currentCity = displayArr[0].EnglishName;
-  let weather = forecastArr[0].DailyForecasts[0].Day;
-  console.log(weather)
+  console.log(displayArr)
+
+  // var currentCity = displayArr[0].EnglishName;
 
 todayContainer.innerHTML += 
   ` <h2 id="city">${currentCity}</h2>
-    <h4 id="date">${now}</h4>
-      <p>Day:<img alt="Weather Icon"></p>
-      <p>Night:<img alt="Weather Icon 2"></p>
+    <h2 id="date">Date</h2>
+      <img alt="Weather Icon">
       <p id="temp">Current temp</p>
       <p id="wind">Wind Speed</p>
       <p id="humidity">Current Humidity</p>`
