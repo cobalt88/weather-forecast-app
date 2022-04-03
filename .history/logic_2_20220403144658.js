@@ -3,13 +3,12 @@ const apiKey = '486a30fe2a4040f404391459060015ad';
 var displayArr = [];
 var geoArr = [];
 var oneCallDataArr = [];
-var searchInput = localStorage.getItem('lastSearch');
+var searchInput = '';
 var lat = '';
 var lon = '';
 var forecastContainer = document.getElementById('5-day-container');
 var currentDay = document.getElementById('current-day')
 
-$(document).ready(geoLocate());
 
 function geoLocate() {
   var requestLocationUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${searchInput}&limit=1&appid=${apiKey}`
@@ -74,15 +73,16 @@ function forecastDisplayHandler() {
   let humidity = oneCallDataArr[0].daily[0].humidity;
   let uvIndex = oneCallDataArr[0].daily[0].uvi;
   
-   currentDay.innerHTML = 
+  currentDay.innerHTML = '';
+  currentDay.innerHTML += 
   ` <h2 id="city">${currentCity}</h2>
     <h4 id="date">${now}</h4>
     <img alt="Weather Icon">
     <p id="weather-${i}></p>
     <p id="temp-${i}">Day Temp: ${tempFd}</p>
     <p id="temp-${i}">Evening Temp: ${tempFe}</p>
-    <p id="temp-${i}">Max Temp: ${tempFmax}</p>
-    <p id="temp-${i}">Min Temp: ${tempFmin}</p>
+    <p id="temp-${i}">Max Temp: ${tempFmin}</p>
+    <p id="temp-${i}">Min Temp: ${tempFmax}</p>
     <p id="wind-${i}">Average Wind Speed: ${windSpeed}</p>
     <p id="wind-${i}">Wind Gust: ${windGust}</p>
     <p id="wind-${i}">Wind Direction: ${windDir} degrees</p>
@@ -131,7 +131,7 @@ for (var i = 1; i < 6; i++) {
 }
 $("#search-button").on("click", function () {
   searchInput = $(this).siblings("#searchInput").val();
-  localStorage.setItem('lastSearch', searchInput);
+  Storage.setItem
   geoLocate();
 });
 

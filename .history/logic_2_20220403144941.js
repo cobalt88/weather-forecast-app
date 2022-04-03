@@ -3,13 +3,12 @@ const apiKey = '486a30fe2a4040f404391459060015ad';
 var displayArr = [];
 var geoArr = [];
 var oneCallDataArr = [];
-var searchInput = localStorage.getItem('lastSearch');
+var searchInput = '';
 var lat = '';
 var lon = '';
 var forecastContainer = document.getElementById('5-day-container');
 var currentDay = document.getElementById('current-day')
 
-$(document).ready(geoLocate());
 
 function geoLocate() {
   var requestLocationUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${searchInput}&limit=1&appid=${apiKey}`
@@ -131,7 +130,7 @@ for (var i = 1; i < 6; i++) {
 }
 $("#search-button").on("click", function () {
   searchInput = $(this).siblings("#searchInput").val();
-  localStorage.setItem('lastSearch', searchInput);
+  Storage.setItem
   geoLocate();
 });
 
