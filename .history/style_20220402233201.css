@@ -6,7 +6,6 @@
 .cardContainer {
   display: flex;
   flex-direction: row;
-}
 
 .cityList {
   display: flex;

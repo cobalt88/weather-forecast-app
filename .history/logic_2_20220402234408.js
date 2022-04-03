@@ -51,11 +51,12 @@ function forecastDisplayHandler() {
 
   var now = moment().format('dddd MMMM do YYYY, h:mm a');
   var currentCity = geoArr[0][0].name;
-  //note to self, add function to convert current time to unix time with moments and compare to values in this object to get current temp
-  var tempKc = oneCallDataArr[0].daily[0].temp.day;
-  var tempKmax = oneCallDataArr[0].hourly[0].temp.max;
+  var tempKd = oneCallDataArr[0].daily[0].temp.day;
+  var tempKe = oneCallDataArr[0].daily[0].temp.eve;
+  var tempKmax = oneCallDataArr[0].daily[0].temp.max;
   var tempKmin = oneCallDataArr[0].daily[0].temp.min;
-  var tempFc = Math.round((tempKc - 273.15) * 1.8 + 32);
+  var tempFd = Math.round((tempKd - 273.15) * 1.8 + 32);
+  var tempFe = Math.round((tempKe - 273.15) * 1.8 + 32);
   var tempFmin = Math.round((tempKmin - 273.15) * 1.8 + 32);
   var tempFmax = Math.round((tempKmax - 273.15) * 1.8 + 32);
   var wind = '';
@@ -64,13 +65,12 @@ function forecastDisplayHandler() {
   ` <h2 id="city">${currentCity}</h2>
     <h4 id="date">${now}</h4>
     <img alt="Weather Icon">
-    <p id="weather-${i}></p>
-    <p id="temp-${i}">Day Temp: ${tempFd}</p>
-    <p id="temp-${i}">Evening Temp: ${tempFe}</p>
-    <p id="temp-${i}">Max Temp: ${tempFmin}</p>
-    <p id="temp-${i}">Min Temp: ${tempFmax}</p>
-    <p id="wind-${i}">${wind}</p>
-    <p id="humidity-${i}">${humidity}</p>`
+    <p id="temp">Day Temp: ${tempFd}</p>
+    <p id="temp">Evening Temp: ${tempFe}</p>
+    <p id="temp">Max Temp: ${tempFmin}</p>
+    <p id="temp">Min Temp: ${tempFmax}</p>
+    <p id="wind">${wind}</p>
+    <p id="humidity">${humidity}</p>`
 
 for (var i = 1; i < 6; i++) {
 

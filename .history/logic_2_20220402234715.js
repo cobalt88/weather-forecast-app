@@ -64,13 +64,12 @@ function forecastDisplayHandler() {
   ` <h2 id="city">${currentCity}</h2>
     <h4 id="date">${now}</h4>
     <img alt="Weather Icon">
-    <p id="weather-${i}></p>
-    <p id="temp-${i}">Day Temp: ${tempFd}</p>
-    <p id="temp-${i}">Evening Temp: ${tempFe}</p>
-    <p id="temp-${i}">Max Temp: ${tempFmin}</p>
-    <p id="temp-${i}">Min Temp: ${tempFmax}</p>
-    <p id="wind-${i}">${wind}</p>
-    <p id="humidity-${i}">${humidity}</p>`
+    <p id="temp">Day Temp: ${tempFd}</p>
+    <p id="temp">Evening Temp: ${tempFe}</p>
+    <p id="temp">Max Temp: ${tempFmin}</p>
+    <p id="temp">Min Temp: ${tempFmax}</p>
+    <p id="wind">${wind}</p>
+    <p id="humidity">${humidity}</p>`
 
 for (var i = 1; i < 6; i++) {
 
