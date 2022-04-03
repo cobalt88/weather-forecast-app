@@ -136,7 +136,6 @@ for (var i = 1; i < 6; i++) {
 }
 
 function storage() {
-  localStorage.setItem(JSON.stringify('searchHistory', searchHistoryArr));
   let tempArr = [];
   let history = JSON.parse(localStorage.getItem('searchHistory'))
 
@@ -162,7 +161,7 @@ $("#search-button").on("click", function () {
   storage();
 });
 
-// $(document).ready(storage());
+$(document).ready(storage());
 
 
 

@@ -135,8 +135,7 @@ for (var i = 1; i < 6; i++) {
 };
 }
 
-function storage() {
-  localStorage.setItem(JSON.stringify('searchHistory', searchHistoryArr));
+function getStorage() {
   let tempArr = [];
   let history = JSON.parse(localStorage.getItem('searchHistory'))
 
@@ -159,10 +158,10 @@ $("#search-button").on("click", function () {
   searchInput = $(this).siblings("#searchInput").val();
   geoLocate();
   searchHistoryArr.push(searchInput);
-  storage();
+  getStorage();
 });
 
-// $(document).ready(storage());
+$(document).ready(getStorage());
 
 
 

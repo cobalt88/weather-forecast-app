@@ -9,7 +9,7 @@ var lon = '';
 var forecastContainer = document.getElementById('5-day-container');
 var currentDay = document.getElementById('current-day')
 var searchHistoryArr = [];
-
+// $(document).ready(geoLocate());
 
 function geoLocate() {
   var requestLocationUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${searchInput}&limit=1&appid=${apiKey}`
@@ -135,13 +135,9 @@ for (var i = 1; i < 6; i++) {
 };
 }
 
-function storage() {
-  localStorage.setItem(JSON.stringify('searchHistory', searchHistoryArr));
-  let tempArr = [];
+function getStorage() {
   let history = JSON.parse(localStorage.getItem('searchHistory'))
-
-  tempArr.push(history);
-  
+  let tempArr = [];
   // tempArr.push(searchInput);
   // tempArr.push(searchHistoryArr);
   // tempArr.push(history);
@@ -158,11 +154,8 @@ function storage() {
 $("#search-button").on("click", function () {
   searchInput = $(this).siblings("#searchInput").val();
   geoLocate();
-  searchHistoryArr.push(searchInput);
-  storage();
+  getStorage();
 });
-
-// $(document).ready(storage());
 
 
 

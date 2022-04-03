@@ -136,7 +136,7 @@ for (var i = 1; i < 6; i++) {
 }
 
 function storage() {
-  localStorage.setItem(JSON.stringify('searchHistory', searchHistoryArr));
+  localStorage.setItem(JSON.stringify('searchHistory', searchHistoryArr))
   let tempArr = [];
   let history = JSON.parse(localStorage.getItem('searchHistory'))
 
