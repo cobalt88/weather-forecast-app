@@ -13,7 +13,7 @@ var historyContainer = document.getElementById("history");
 
 
 function geoLocate() {
-  var requestLocationUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${searchInput}&limit=1&appid=${apiKey}`
+  var requestLocationUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${searchInput}&limit=1&appid=${apiKey}`
   fetch(requestLocationUrl) 
   .then(function(response){
     return response.json();
