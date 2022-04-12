@@ -3,16 +3,16 @@ const apiKey = '486a30fe2a4040f404391459060015ad';
 var displayArr = [];
 var geoArr = [];
 var oneCallDataArr = [];
-// var searchHistory = localStorage.getItem('lastSearch');
+var searchInput = localStorage.getItem('lastSearch');
 var lat = '';
 var lon = '';
 var forecastContainer = document.getElementById('5-day-container');
 var currentDay = document.getElementById('current-day')
-// var searchHistoryArr = [];
+var searchHistoryArr = [];
 var historyContainer = document.getElementById("history");
 
 
-function geoLocate(searchInput) {
+function geoLocate() {
   var requestLocationUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${searchInput}&limit=1&appid=${apiKey}`
   fetch(requestLocationUrl) 
   .then(function(response){
@@ -136,54 +136,52 @@ for (var i = 1; i < 6; i++) {
 };
 }
 
-let loadHistory = (searchInput) => {
-  var searchHistoryArr = [];
-  let storedData = JSON.parse(localStorage.getItem("Search History"));
-
-    let pushData = (storedData, searchInput) => {
-      searchHistoryArr.push(...storedData);
-      searchHistoryArr.push(searchInput);
-    }
-  
-  pushData(storedData, searchInput);
+function loadStorage() {
+  let existing = localStorage.getItem()
+  // let x = JSON.parse(localStorage.getItem("searchHistory"));
+  // searchHistoryArr.push(x);
   console.log(searchHistoryArr);
-  storeSearch(searchHistoryArr);
   
 }
 
-let storeSearch = (searchHistoryArr) => {
+function storage() {
 
-  
-  let key = "Search History";
-  localStorage.setItem(key, JSON.stringify(searchHistoryArr))
+searchHistoryArr = [];
+localStorage.setItem('searchHistory', JSON.stringify(searchHistoryArr));
+yesArray = JSON.parse(localStorage.getItem('yesArray'));
+yesArray.push('yes');
+localStorage.setItem('yesArray', JSON.stringify(yesArray));
+JSON.parse(localStorage.getItem('yesArray')); 
+// let searchHistory = JSON.stringify(searchHistoryArr);
+// localStorage.setItem('searchHistory', searchHistory);
+// let searchData = localStorage.getItem('searchHistory');
 
+//   console.log(searchHistoryArr);
 }
 
+function displayHistory() {
+for(var i = 0; i < searchHistoryArr.length; i++) {
 
-// let loadHistory = () => {
-// for(var i = 0; i < searchHistoryArr.length; i++) {
-
-//   if (i < 5) {
-//     var text = searchHistoryArr[i];
+  if (i < 5) {
+    var text = searchHistoryArr[i];
   
-//     historyContainer.innerHTML += 
-//       `<li>${text}</li>`
-//     }
-//   }
-// }
+    historyContainer.innerHTML += 
+      `<li>${text}</li>`
+    }
+  }
+}
 
 $("#search-button").on("click", function () {
   searchInput = $(this).siblings("#searchInput").val();
-  geoLocate(searchInput);
-  storeSearch(searchInput);
+  // searchHistoryArr.push(searchInput);
+  geoLocate();
+  // storage();
 });
 
 // ability to press enter for function
 $(document).on('keypress',function(e) {
   if(e.which == 13) {
-      searchInput = $("#searchInput").val()
-      geoLocate(searchInput);
-      loadHistory(searchInput);
+      alert('You pressed enter!');
   }
 });
 

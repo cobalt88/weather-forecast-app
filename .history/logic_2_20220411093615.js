@@ -138,14 +138,10 @@ for (var i = 1; i < 6; i++) {
 
 let loadHistory = (searchInput) => {
   var searchHistoryArr = [];
-  let storedData = JSON.parse(localStorage.getItem("Search History"));
+  storedData = JSON.parse(localStorage.getItem("Search History"));
+  searchHistoryArr.push(...storedData);
+  searchHistoryArr.push(searchInput);
 
-    let pushData = (storedData, searchInput) => {
-      searchHistoryArr.push(...storedData);
-      searchHistoryArr.push(searchInput);
-    }
-  
-  pushData(storedData, searchInput);
   console.log(searchHistoryArr);
   storeSearch(searchHistoryArr);
   

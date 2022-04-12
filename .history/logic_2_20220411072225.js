@@ -8,7 +8,7 @@ var lat = '';
 var lon = '';
 var forecastContainer = document.getElementById('5-day-container');
 var currentDay = document.getElementById('current-day')
-// var searchHistoryArr = [];
+var searchHistoryArr = [];
 var historyContainer = document.getElementById("history");
 
 
@@ -136,41 +136,35 @@ for (var i = 1; i < 6; i++) {
 };
 }
 
-let loadHistory = (searchInput) => {
-  var searchHistoryArr = [];
-  let storedData = JSON.parse(localStorage.getItem("Search History"));
-
-    let pushData = (storedData, searchInput) => {
-      searchHistoryArr.push(...storedData);
-      searchHistoryArr.push(searchInput);
-    }
-  
-  pushData(storedData, searchInput);
+let loadStorage = () => {
+  let existing = JSON.parse(localStorage.getItem("Search History"));
+  // let x = JSON.parse(localStorage.getItem("searchHistory"));
+  // searchHistoryArr.push(x);
   console.log(searchHistoryArr);
-  storeSearch(searchHistoryArr);
   
 }
 
-let storeSearch = (searchHistoryArr) => {
+let storeSearch = (searchInput) => {
 
-  
   let key = "Search History";
+  searchHistoryArr.push(searchInput);
   localStorage.setItem(key, JSON.stringify(searchHistoryArr))
 
+  loadHistory();
 }
 
 
-// let loadHistory = () => {
-// for(var i = 0; i < searchHistoryArr.length; i++) {
+let displayHistory = () => {
+for(var i = 0; i < searchHistoryArr.length; i++) {
 
-//   if (i < 5) {
-//     var text = searchHistoryArr[i];
+  if (i < 5) {
+    var text = searchHistoryArr[i];
   
-//     historyContainer.innerHTML += 
-//       `<li>${text}</li>`
-//     }
-//   }
-// }
+    historyContainer.innerHTML += 
+      `<li>${text}</li>`
+    }
+  }
+}
 
 $("#search-button").on("click", function () {
   searchInput = $(this).siblings("#searchInput").val();
@@ -183,7 +177,7 @@ $(document).on('keypress',function(e) {
   if(e.which == 13) {
       searchInput = $("#searchInput").val()
       geoLocate(searchInput);
-      loadHistory(searchInput);
+      storeSearch(searchInput);
   }
 });
 
