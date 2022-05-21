@@ -164,20 +164,21 @@ $("#search-button").on("click", function () {
   storage();
 });
 
-$(".list-button").on("click", function(){
-  let test = $(this)
-  console.log(test);
-});
-
 
 
 $(document).ready(function(){
-
-  $('#city-one').text = `${historyArr[0]}`;
-  $('#city-two').text = `${historyArr[1]}`;
-  $('#city-three').text = `${historyArr[2]}`;
-  $('#city-four').text = `${historyArr[3]}`;
-  $('#city-five').text = `${historyArr[4]}`;
+  history.innerHTML = `
+  <div class="card-header">
+    Featured
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">${historyArr[0]}</li>
+    <li class="list-group-item">${historyArr[1]}</li>
+    <li class="list-group-item">${historyArr[2]}</li>
+    <li class="list-group-item">${historyArr[3]}</li>
+    <li class="list-group-item">${historyArr[4]}</li>
+  </ul>
+`;
 
 console.log(historyArr[0])
   // loadStorage()

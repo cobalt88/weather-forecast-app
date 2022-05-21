@@ -172,12 +172,20 @@ $(".list-button").on("click", function(){
 
 
 $(document).ready(function(){
-
-  $('#city-one').text = `${historyArr[0]}`;
-  $('#city-two').text = `${historyArr[1]}`;
-  $('#city-three').text = `${historyArr[2]}`;
-  $('#city-four').text = `${historyArr[3]}`;
-  $('#city-five').text = `${historyArr[4]}`;
+  currentDay.innerHTML = `
+  <div class="card history-card" id="history" style="">
+  <div class="card-header">
+    Featured
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><button type="button" class="list-button"> ${historyArr[0]} </button></li>
+    <li class="list-group-item"><button type="button" class="list-button"> ${historyArr[1]} </button></li>
+    <li class="list-group-item"><button type="button" class="list-button"> ${historyArr[2]} </button></li>
+    <li class="list-group-item"><button type="button" class="list-button"> ${historyArr[3]} </button></li>
+    <li class="list-group-item"><button type="button" class="list-button"> ${historyArr[4]} </button></li>
+  </ul>
+  </div>
+`;
 
 console.log(historyArr[0])
   // loadStorage()

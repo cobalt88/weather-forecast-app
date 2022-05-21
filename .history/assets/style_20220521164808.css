@@ -5,13 +5,6 @@
   margin: 20px;
 }
 
-.history-card {
-  display: flex;
-  justify-content: flex-start;
-  width: 25%;
-  text-align: center;
-}
-
 .list-group-item {
   background-color: rgb(65, 65, 85);
 }

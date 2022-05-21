@@ -173,11 +173,11 @@ $(".list-button").on("click", function(){
 
 $(document).ready(function(){
 
-  $('#city-one').text = `${historyArr[0]}`;
-  $('#city-two').text = `${historyArr[1]}`;
-  $('#city-three').text = `${historyArr[2]}`;
-  $('#city-four').text = `${historyArr[3]}`;
-  $('#city-five').text = `${historyArr[4]}`;
+  $('#city-one').innerHTML = `${historyArr[0]}`;
+  $('#city-two').innerHTML = `${historyArr[1]}`;
+  $('#city-three').innerHTML = `${historyArr[2]}`;
+  $('#city-four').innerHTML = `${historyArr[3]}`;
+  $('#city-five').innerHTML = `${historyArr[4]}`;
 
 console.log(historyArr[0])
   // loadStorage()
