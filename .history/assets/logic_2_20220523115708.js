@@ -3,15 +3,15 @@ const apiKey = '486a30fe2a4040f404391459060015ad';
 var displayArr = [];
 var geoArr = [];
 var oneCallDataArr = [];
+var searchInput = localStorage.getItem('lastSearch');
 var lat = '';
 var lon = '';
 var forecastContainer = document.getElementById('5-day-container');
 var currentDay = document.getElementById('today');
 const history = document.getElementById('history-container');
-let historyButton = document.getElementsByClassName('list-button');
+const historyArr = ['Orlando', 'New York', 'Denver', 'Dallas', 'Anchorage'];
 
-
-function geoLocate(searchInput) {
+function geoLocate() {
   var requestLocationUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${searchInput}&limit=1&appid=${apiKey}`
   fetch(requestLocationUrl) 
   .then(function(response){
@@ -132,51 +132,42 @@ for (var i = 1; i < 6; i++) {
 }
 
 
-function addItem(searchInput) {
-  var existingEntries = JSON.parse(localStorage.getItem("cities") || '[]');
 
-  if (!existingEntries.includes(searchInput)) {
-    existingEntries.splice(0, 0, searchInput);
-    localStorage.setItem("cities", JSON.stringify(existingEntries));
-  }
+const storage = () => {
+  storedStuff = localStorage.getItem(city);
+  history.push(storedStuff);
 }
 
-
-const storage = async() => {
-  let storageArr = []
-  storedStuff = await JSON.parse(localStorage.getItem("cities"));
-  if(storedStuff != undefined){
-     storageArr.push(...storedStuff);
-  } return storageArr;
-}
-
-function displayHistory(storageArr) {
+function displayHistory() {
   history.innerHTML = '';
-for(var i = 0; i < 8; i++) {
-  if(storageArr[i] != undefined)
-  history.innerHTML +=  `<li class="list-group-item"><button type="button" class="list-button" onclick="let searchInput = '${storageArr[i]}'; geoLocate(searchInput)">${storageArr[i]}</button></li>`;
-  
+for(var i = 0; i < 10; i++) {
+  history.innerHTML +=  `<li class="list-group-item"><button type="button" class="list-button">${historyArr[i]}</button></li>`;
   }
-} 
+}
 
-const readyPage = async () => {
-  let searchInput = 'Orlando';
-  geoLocate(searchInput);
-  let storageArr = await storage();
-  displayHistory(storageArr);
-} ;
-
-$("#search-button").on("click", function search() {
-  let searchInput = $(this).siblings("#searchInput").val();
-  addItem(searchInput);
-  geoLocate(searchInput);
+$("#search-button").on("click", function () {
+  searchInput = $(this).siblings("#searchInput").val();
+  localStorage.setItem('city', searchInput);
+  geoLocate();
   
 });
 
+$(".list-button").on("click", function(){
+  let test = $(this)
+  console.log(test);
+});
 
-$(document).ready(readyPage)
-  
 
+
+$(document).ready(function(){
+
+
+  searchInput = 'Orlando';
+  geoLocate();
+
+  // loadStorage()
+  displayHistory();
+} );
 
 
 

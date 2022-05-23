@@ -154,7 +154,7 @@ function displayHistory(storageArr) {
   history.innerHTML = '';
 for(var i = 0; i < 8; i++) {
   if(storageArr[i] != undefined)
-  history.innerHTML +=  `<li class="list-group-item"><button type="button" class="list-button" onclick="let searchInput = '${storageArr[i]}'; geoLocate(searchInput)">${storageArr[i]}</button></li>`;
+  history.innerHTML +=  `<li class="list-group-item"><button type="button" class="list-button" onclick="let searchInput = ${storageArr[i]}; geoLocate(searchInput)">${storageArr[i]}</button></li>`;
   
   }
 } 

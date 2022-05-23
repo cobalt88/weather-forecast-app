@@ -154,20 +154,20 @@ function displayHistory(storageArr) {
   history.innerHTML = '';
 for(var i = 0; i < 8; i++) {
   if(storageArr[i] != undefined)
-  history.innerHTML +=  `<li class="list-group-item"><button type="button" class="list-button" onclick="let searchInput = '${storageArr[i]}'; geoLocate(searchInput)">${storageArr[i]}</button></li>`;
+  history.innerHTML +=  `<li class="list-group-item"><button type="button" class="list-button" onclick="geoLocate(${storageArr[i]})">${storageArr[i]}</button></li>`;
   
   }
 } 
 
 const readyPage = async () => {
-  let searchInput = 'Orlando';
-  geoLocate(searchInput);
+  searchInput = 'Orlando';
+  geoLocate();
   let storageArr = await storage();
   displayHistory(storageArr);
 } ;
 
 $("#search-button").on("click", function search() {
-  let searchInput = $(this).siblings("#searchInput").val();
+  searchInput = $(this).siblings("#searchInput").val();
   addItem(searchInput);
   geoLocate(searchInput);
   

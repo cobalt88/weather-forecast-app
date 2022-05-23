@@ -61,23 +61,3 @@ img {
 .uvExtreme {
   color: violet
 }
-
-@media only screen and (max-width: 900px) {
-  #today {
-    width: 90%;
-  }
-
-  .history-card {
-    width: 90%;
-  }
-
-}
-
-@media only screen and (max-width: 500px) {
-  .cardContainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-}

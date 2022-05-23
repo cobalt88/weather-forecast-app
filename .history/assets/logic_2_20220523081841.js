@@ -3,15 +3,15 @@ const apiKey = '486a30fe2a4040f404391459060015ad';
 var displayArr = [];
 var geoArr = [];
 var oneCallDataArr = [];
+var searchInput = localStorage.getItem('lastSearch');
 var lat = '';
 var lon = '';
 var forecastContainer = document.getElementById('5-day-container');
 var currentDay = document.getElementById('today');
-const history = document.getElementById('history-container');
-let historyButton = document.getElementsByClassName('list-button');
+const history = document.getElementById('history');
+const historyArr = ['Orlando', 'New York', 'Denver', 'Dallas', 'Anchorage'];
 
-
-function geoLocate(searchInput) {
+function geoLocate() {
   var requestLocationUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${searchInput}&limit=1&appid=${apiKey}`
   fetch(requestLocationUrl) 
   .then(function(response){
@@ -58,6 +58,7 @@ const forecastDisplayHandler = async() => {
   forecastContainer.innerHTML = '';
   var now = moment().format('dddd MMMM do YYYY, h:mm a');
   var currentCity = geoArr[0][0].name;
+  //note to self, add function to convert current time to unix time with moments and compare to values in this object to get current temp
   let tempKd = oneCallDataArr[0].daily[0].temp.day;
   let tempKmax = oneCallDataArr[0].daily[0].temp.max;
   let tempKmin = oneCallDataArr[0].daily[0].temp.min;
@@ -70,6 +71,7 @@ const forecastDisplayHandler = async() => {
 
   let windSpeed = oneCallDataArr[0].daily[0].wind_speed;
   let windGust = oneCallDataArr[0].daily[0].wind_gust;
+  let windDir = oneCallDataArr[0].daily[0].wind_deg;
   let humidity = oneCallDataArr[0].daily[0].humidity;
   let uvIndex = oneCallDataArr[0].daily[0].uvi;
   let icon = oneCallDataArr[0].daily[0].weather[0].icon;
@@ -102,9 +104,14 @@ for (var i = 1; i < 6; i++) {
   let unixTime = oneCallDataArr[0].daily[i].dt;
   let dateString = moment.unix(unixTime).format("MM/DD/YYYY");
 
+  let tempKd = oneCallDataArr[0].daily[i].temp.day;
+  let tempKe = oneCallDataArr[0].daily[i].temp.eve;
   let tempKmax = oneCallDataArr[0].daily[i].temp.max;
   let tempKmin = oneCallDataArr[0].daily[i].temp.min;
 
+  let tempFd = Math.round((tempKd - 273.15) * 1.8 + 32);
+  // let tempFd = kelvinToImperial(tempKd);
+  let tempFe = Math.round((tempKe - 273.15) * 1.8 + 32);
   let tempFmin = Math.round((tempKmin - 273.15) * 1.8 + 32);
   let tempFmax = Math.round((tempKmax - 273.15) * 1.8 + 32);
 
@@ -118,7 +125,7 @@ for (var i = 1; i < 6; i++) {
 
   forecastContainer.innerHTML +=
       `
-      <div id="day ${i}" class="card col-10 col-sm-5 col-lg-3">
+      <div id="day ${i}" class="card col-10">
         <h2 id="date" class="card-title">${dateString}</h2>
           <img src="${iconSrc}" class="card-img-top" alt="Weather Icon"/>
             <p id="weather-${i}></p>
@@ -132,51 +139,52 @@ for (var i = 1; i < 6; i++) {
 }
 
 
-function addItem(searchInput) {
-  var existingEntries = JSON.parse(localStorage.getItem("cities") || '[]');
 
-  if (!existingEntries.includes(searchInput)) {
-    existingEntries.splice(0, 0, searchInput);
-    localStorage.setItem("cities", JSON.stringify(existingEntries));
+const storage = () => {
+  storedStuff = localStorage.getItem(city);
+  history.push(storedStuff);
+}
+
+function displayHistory() {
+for(var i = 0; i < searchHistoryArr.length; i++) {
+
+  if (i < 5) {
+    var text = searchHistoryArr[i];
+  
+    historyContainer.innerHTML += 
+      `<li>${text}</li>`
+    }
   }
 }
 
+$("#search-button").on("click", function () {
+  searchInput = $(this).siblings("#searchInput").val();
+  localStorage.setItem('city', searchInput);
+  geoLocate();
+  storage();
+});
 
-const storage = async() => {
-  let storageArr = []
-  storedStuff = await JSON.parse(localStorage.getItem("cities"));
-  if(storedStuff != undefined){
-     storageArr.push(...storedStuff);
-  } return storageArr;
-}
-
-function displayHistory(storageArr) {
-  history.innerHTML = '';
-for(var i = 0; i < 8; i++) {
-  if(storageArr[i] != undefined)
-  history.innerHTML +=  `<li class="list-group-item"><button type="button" class="list-button" onclick="let searchInput = '${storageArr[i]}'; geoLocate(searchInput)">${storageArr[i]}</button></li>`;
-  
-  }
-} 
-
-const readyPage = async () => {
-  let searchInput = 'Orlando';
-  geoLocate(searchInput);
-  let storageArr = await storage();
-  displayHistory(storageArr);
-} ;
-
-$("#search-button").on("click", function search() {
-  let searchInput = $(this).siblings("#searchInput").val();
-  addItem(searchInput);
-  geoLocate(searchInput);
-  
+$(".list-button").on("click", function(){
+  let test = $(this)
+  console.log(test);
 });
 
 
-$(document).ready(readyPage)
-  
 
+$(document).ready(function(){
+
+  $('#city-one').text = `${historyArr[0]}`;
+  $('#city-two').text = `${historyArr[1]}`;
+  $('#city-three').text = `${historyArr[2]}`;
+  $('#city-four').text = `${historyArr[3]}`;
+  $('#city-five').text = `${historyArr[4]}`;
+  searchInput = 'Orlando';
+  geoLocate();
+
+console.log(historyArr[0])
+  // loadStorage()
+  // displayHistory()
+} );
 
 
 
