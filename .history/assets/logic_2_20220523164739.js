@@ -44,7 +44,7 @@ function oneCall() {
     forecastDisplayHandler();
   })
   .then(function(){
-    console.log(oneCallDataArr)
+    // console.log(oneCallDataArr)
   })
 };
 
