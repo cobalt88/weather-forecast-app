@@ -170,7 +170,9 @@ $("#search-button").on("click", function search() {
   let searchInput = $(this).siblings("#searchInput").val();
   addItem(searchInput);
   geoLocate(searchInput);
-  
+  storageArr = storage().then(res => {
+    displayHistory(res);
+  })
 });
 
 
