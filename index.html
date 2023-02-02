@@ -33,21 +33,19 @@
         id="searchInput"
         placeholder="Search for city or country"
       />
-      <button type="button" id="search-button">search</button>
+      <button type="button" id="search-button" class="button">Search</button>
     </div>
     <div class="cardContainer">
-        <div  id="history" class="card history-card">
-          <div class="card-header">
-            Recent Searches
-          </div>
-            <ul class="list-group list-group-flush" id="history-container">
-          </ul>
-        </div>
-        <div class="card" id="today">
+      <div id="history" class="card history-card">
+        <div class="card-header">Recent Searches</div>
+        <ul class="list-group list-group-flush" id="history-container"></ul>
       </div>
+      <div class="card" id="today"></div>
     </div>
-    <div id="5-day-container" class="cardContainer"> 
-    </div>
+    <div id="5-day-container" class="cardContainer"></div>
+    <footer>
+      <p class="center">2023 Weather Dashboard Made with Open Weather API</p>
+    </footer>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
     <script src="./assets/logic_2.js"></script>

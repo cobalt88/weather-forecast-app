@@ -1,9 +1,55 @@
+body {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 .card {
   display: flex;
   background-color: rgb(65, 65, 85);
   color: aliceblue;
   margin: 20px;
   padding-left: 30px;
+  padding-right: 30px;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.tempInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.otherInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-title {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+.card-header {
+  display: flex;
+  flex-direction: row;
+}
+
+#icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
 .history-card {
@@ -19,6 +65,7 @@
 
 #today {
   display: flex;
+  flex-direction: column;
   width: 50%;
   max-height: 500px;
   align-self: flex-end;
@@ -32,7 +79,7 @@ img {
 .cardContainer {
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: space-between;
   flex-wrap: wrap;
 }
 
@@ -43,7 +90,26 @@ img {
   max-width: 500px;
 }
 
-.uvMin{
+.button {
+  background-color: rgb(65, 65, 85);
+  color: aliceblue;
+  border: none;
+  padding: 10px;
+  margin: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-bloc;
+  font-size: 16px;
+  border-radius: 5px;
+  width: 100px;
+  height: 40px;
+}
+
+.card-header {
+  width: 100%;
+}
+
+.uvMin {
   color: green;
 }
 
@@ -60,18 +126,22 @@ img {
 }
 
 .uvExtreme {
-  color: violet
+  color: violet;
 }
 
 @media only screen and (max-width: 900px) {
   #today {
     width: 90%;
+    max-height: 700px;
+  }
+
+  .card-body {
+    flex-direction: column;
   }
 
   .history-card {
     width: 90%;
   }
-
 }
 
 @media only screen and (max-width: 500px) {
