@@ -10,6 +10,7 @@ body {
   margin: 20px;
   padding-left: 30px;
   padding-right: 30px;
+  border-radius: 10px;
 }
 
 .card-body {
@@ -47,6 +48,7 @@ body {
 
 #icon {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
@@ -139,10 +141,17 @@ img {
   .card {
     flex-direction: column;
     max-width: 80%;
+    align-items: center;
   }
 
   .card-body {
     flex-direction: column;
+    margin: auto;
+    justify-content: center;
+  }
+
+  .card-title {
+    margin-top: 20px;
   }
 
   .history-card {

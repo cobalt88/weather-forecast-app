@@ -40,9 +40,6 @@ function oneCall() {
       tempArr.push(allData);
       oneCallDataArr = tempArr;
       forecastDisplayHandler();
-    })
-    .then(function () {
-      console.log(oneCallDataArr);
     });
 }
 
@@ -51,18 +48,21 @@ function kelvinToImperial(x) {
 }
 
 const forecastDisplayHandler = async () => {
+  console.log(oneCallDataArr);
   forecastContainer.innerHTML = "";
-  var now = moment().format("dddd MMMM do YYYY, h:mm a");
+  var now = new Date().toDateString();
   var currentCity = geoArr[0][0].name;
   let tempKd = oneCallDataArr[0].daily[0].temp.day;
   let tempKmax = oneCallDataArr[0].daily[0].temp.max;
   let tempKmin = oneCallDataArr[0].daily[0].temp.min;
   let tempKe = oneCallDataArr[0].daily[0].temp.eve;
+  let tempKc = oneCallDataArr[0].current.temp;
 
   let tempFd = Math.round((tempKd - 273.15) * 1.8 + 32);
   let tempFmin = Math.round((tempKmin - 273.15) * 1.8 + 32);
   let tempFmax = Math.round((tempKmax - 273.15) * 1.8 + 32);
   let tempFe = Math.round((tempKe - 273.15) * 1.8 + 32);
+  let tmepFc = Math.round((tempKc - 273.15) * 1.8 + 32);
 
   let windSpeed = oneCallDataArr[0].daily[0].wind_speed;
   let windGust = oneCallDataArr[0].daily[0].wind_gust;
@@ -91,6 +91,7 @@ const forecastDisplayHandler = async () => {
     </div> 
     <div id="icon">
       <img src="${iconSrc}" alt="Weather Icon">
+      <p id="temp">${tmepFc}°F</p>
     </div> 
     
   </div>
@@ -113,7 +114,7 @@ const forecastDisplayHandler = async () => {
 
   for (var i = 1; i < 6; i++) {
     let unixTime = oneCallDataArr[0].daily[i].dt;
-    let dateString = moment.unix(unixTime).format("MM/DD/YYYY");
+    let dateString = new Date(unixTime * 1000).toDateString();
 
     let tempKmax = oneCallDataArr[0].daily[i].temp.max;
     let tempKmin = oneCallDataArr[0].daily[i].temp.min;
@@ -141,11 +142,13 @@ const forecastDisplayHandler = async () => {
       <div id="day ${i}" class="card col-10 col-sm-5 col-lg-3 col-xl-2">
         <h2 id="date" class="card-title">${dateString}</h2>
           <img src="${iconSrc}" class="card-img-top" alt="Weather Icon"/>
+          <div class="card-body">
             <p id="weather-${i}></p>
             <p id="temp-${i}">Max Temp: ${tempFmin}</p>
             <p id="temp-${i}">Min Temp: ${tempFmax}</p>
             <p id="humidity-${i}">Relative Humidity: ${humidity}%</p>
             <p id="uv-index${i}" class="${uvStyle}">UV Index: ${uvIndex}</p>
+            </div>
       </div>
     `;
   }
