@@ -42,6 +42,37 @@ function oneCall() {
       forecastDisplayHandler();
     });
 }
+response.forEach((e) => {
+  currentDay.innerHTML = ` 
+
+  <div class="card-header"> 
+    <div class="card-title">
+        <h2 id="city">${e.currentCity}</h2>
+      <h4 id="date">${now}</h4> 
+    </div> 
+    <div id="icon">
+      <img src="${e.iconSrc}" alt="Weather Icon">
+      <p id="temp">${e.tmepFc}°F</p>
+    </div> 
+    
+  </div>
+  <div class="card-body">
+    <div class="tempInfo">
+      <p id="weather-${i}"></p>
+      <p id="temp-${i}">Day Temp: ${tempFd}</p>
+      <p id="temp-${i}">Evening Temp: ${tempFe}</p>
+      <p id="temp-${i}">Max Temp: ${tempFmax}</p>
+      <p id="temp-${i}">Min Temp: ${tempFmin}</p>
+    </div>
+    <div class="otherInfo">
+      <p id="wind-${i}">Average Wind Speed: ${windSpeed}</p>
+      <p id="wind-${i}">Wind Gust: ${windGust}</p>
+      <p id="humidity-${i}">Relative Humidity: ${humidity}%</p>
+      <p id="uv-index${i}" class="${uvStyle}">UV Index: ${uvIndex}</p>
+    </div>
+  </div>
+    `;
+});
 
 function kelvinToImperial(x) {
   Math.round((x - 273.15) * 1.8 + 32);
